@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+staged_files=$(git diff --name-only --cached)
+
+./scripts/format.sh
+
+for file in $staged_files; do
+	git add "$file"
+done

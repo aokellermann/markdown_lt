@@ -1,0 +1,23 @@
+# Jetbrains IDE
+
+/.idea/
+
+# Python3 bytecode
+
+__pycache__
+
+# Pytest JUnit results
+
+/test_results/
+
+# Virtualenv
+
+/venv/
+
+# Eggs
+
+/markdown_lt.egg-info
+
+# Coverage report
+
+/.coverage
