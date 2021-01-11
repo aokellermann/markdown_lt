@@ -10,7 +10,7 @@ jobs:
 
       - run:
           name: Install Required Tools
-          command: apk add --no-cache bash python3 py3-pip py3-virtualenv
+          command: apk add --no-cache bash python3 py3-pip py3-virtualenv shfmt shellcheck
 
       - run:
           name: Set Up Virtualenv
