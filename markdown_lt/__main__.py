@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
+
 import getopt
 import sys
-
-import language_tool_python
 
 from markdown_lt import Matcher, AstRenderer, Linter
 
 
 def print_usage(exit_code: int):
-    print("Usage: markdown_lt [OPTION]... FILE")
+    print("Usage: python -m markdown_lt [OPTION]... FILE")
     print(" FILE\t\t\t\tmarkdown file to check")
     print(" Available options:")
     print("  -h, --help\t\t\tprint usage information")
