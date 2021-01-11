@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 
-import markdown_lt
+"""Setup script for markdown_lt."""
+
 from setuptools import setup
 
+import markdown_lt
 
-def fread(filepath):
-    with open(filepath, 'r') as f:
-        return f.read()
+
+def fread(path):
+    """Reads a file."""
+    with open(path, 'r') as file:
+        return file.read()
 
 
 setup(
