@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Set Up Virtualenv
           command: |
-            python -m venv venv
+            python3 -m venv venv
             echo "source venv/bin/activate" >> $BASH_ENV
             source venv/bin/activate
             pip install --upgrade pip wheel
