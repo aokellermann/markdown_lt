@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """Setup script for markdown_lt."""
 
 from setuptools import setup
@@ -22,8 +21,6 @@ setup(
     description='LanguageTool for markdown files.',
     long_description=fread('README.md'),
     license='MIT',
-    packages=[
-        'markdown_lt'
-    ],
+    packages=['markdown_lt'],
     platforms='any',
 )
