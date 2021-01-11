@@ -4,10 +4,10 @@ import sys
 
 import language_tool_python
 
-from markdown_lt import Matcher, AstRenderer
+from markdown_lt import Matcher, AstRenderer, Linter
 
 
-def print_usage():
+def print_usage(exit_code: int):
     print("Usage: markdown_lt [OPTION]... FILE")
     print(" FILE\t\t\t\tmarkdown file to check")
     print(" Available options:")
@@ -22,12 +22,14 @@ def print_usage():
     print("  0\t\t\t\tno errors")
     print("  1\t\t\t\tlanguage errors")
     print("  2\t\t\t\tuser error")
+    exit(exit_code)
 
 
 if __name__ == '__main__':
     if len(sys.argv) <= 1:
-        print_usage()
-        exit(2)
+        print_usage(2)
+    if len(sys.argv) == 2 and sys.argv[1] in ['-h', '--help']:
+        print_usage(0)
 
     language = None
     mother_tongue = None
@@ -37,25 +39,21 @@ if __name__ == '__main__':
     disable = set()
     filename = None
     try:
-        opts, args = getopt.getopt(sys.argv[1:(len(sys.argv) - 1)], "hl:m:w:oe:d:",
-                                   ["help", "language=", "mother-tongue=", "wordlist=", "enabled-only", "enable",
-                                    "disable"])
-        for o, a in opts:
-            if o in ("-h", "--help"):
-                print_usage()
-                exit(0)
-            elif o in ("-l", "--language"):
-                language = a
-            elif o in ("-m", "--mother-tongue"):
-                mother_tongue = a
-            elif o in ("-w", "--wordlist"):
-                wordlist = open(a).readlines()
-            elif o in ("-o", "--enabled-only"):
+        opts, args = getopt.getopt(sys.argv[1:(len(sys.argv) - 1)], "l:m:w:oe:d:",
+                                   ["language=", "mother-tongue=", "wordlist=", "enabled-only", "enable", "disable"])
+        for opt, arg in opts:
+            if opt in ("-l", "--language"):
+                language = arg
+            elif opt in ("-m", "--mother-tongue"):
+                mother_tongue = arg
+            elif opt in ("-w", "--wordlist"):
+                wordlist = open(arg).readlines()
+            elif opt in ("-o", "--enabled-only"):
                 enabled_only = True
-            elif o in ("-e", "--enable"):
-                enable = {int(rule) for rule in a.split(',')}
-            elif o in ("-d", "--disable"):
-                disable = {int(rule) for rule in a.split(',')}
+            elif opt in ("-e", "--enable"):
+                enable = set(arg.split(','))
+            elif opt in ("-d", "--disable"):
+                disable = set(arg.split(','))
             else:
                 raise RuntimeError("Unhandled argument found.")
         filename = sys.argv[-1]
@@ -64,7 +62,7 @@ if __name__ == '__main__':
         exit(2)
 
     ast_renderer = AstRenderer()
-    language_tool = language_tool_python.LanguageTool(language, mother_tongue, None, wordlist)
+    language_tool = Linter(language, mother_tongue, wordlist, enabled_only, enable, disable)
     matcher = Matcher(language_tool)
 
     ast = ast_renderer.read(filename)
