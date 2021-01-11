@@ -23,7 +23,7 @@ jobs:
 
       - run:
           name: Format
-          command: ./scripts/format.sh check
+          command: ./scripts/format.sh
 
       - run:
           name: Lint
@@ -31,9 +31,7 @@ jobs:
 
       - run:
           name: Test
-          command: |
-            ./scripts/test.sh
-            coverage html
+          command: ./scripts/test.sh
 
       - store_test_results:
           path: test_results

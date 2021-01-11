@@ -2,7 +2,7 @@
 
 staged_files=$(git diff --name-only --cached)
 
-./scripts/format.sh
+./scripts/format.sh -i
 
 for file in $staged_files; do
 	git add "$file"

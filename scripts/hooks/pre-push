@@ -4,5 +4,5 @@ trap "echo 'Formatting and linting errors must be fixed before pushing!'" ERR
 
 set -eo pipefail
 
-./scripts/format.sh check
+./scripts/format.sh
 ./scripts/lint.sh
