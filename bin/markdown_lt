@@ -9,16 +9,19 @@ from markdown_lt import Matcher, AstRenderer
 
 def print_usage():
     print("Usage: markdown_lt [OPTION]... FILE")
-    print(" FILE\t\t\t\t\tmarkdown file to check")
+    print(" FILE\t\t\t\tmarkdown file to check")
     print(" Available options:")
+    print("  -h, --help\t\t\tprint usage information")
     print("  -l, --language LANG\t\tthe language code of the text")
-    print("  -m, --mother-tongue LANG\t\tthe language code of your mother tongue")
+    print("  -m, --mother-tongue LANG\tthe language code of your mother tongue")
     print("  -w, --wordlist DICT\t\ta newline separated file of valid words")
     print("  -o, --enabled-only\t\tdisable all rules except those specified in -e")
     print("  -e, --enable RULES\t\tcomma-separated list of rule IDs to enable")
     print("  -d, --disable RULES\t\tcomma-separated list of rule IDs to disable")
-    print(" Returns:")
-    print("\t0 if no errors, 1 if errors, 2 if user error")
+    print(" Exit code:")
+    print("  0\t\t\t\tno errors")
+    print("  1\t\t\t\tlanguage errors")
+    print("  2\t\t\t\tuser error")
 
 
 if __name__ == '__main__':
@@ -34,10 +37,14 @@ if __name__ == '__main__':
     disable = set()
     filename = None
     try:
-        opts, args = getopt.getopt(sys.argv[1:(len(sys.argv) - 1)], "l:m:w:oe:d:",
-                                   ["language=", "mother-tongue=", "wordlist=", "enabled-only", "enable", "disable"])
+        opts, args = getopt.getopt(sys.argv[1:(len(sys.argv) - 1)], "hl:m:w:oe:d:",
+                                   ["help", "language=", "mother-tongue=", "wordlist=", "enabled-only", "enable",
+                                    "disable"])
         for o, a in opts:
-            if o in ("-l", "--language"):
+            if o in ("-h", "--help"):
+                print_usage()
+                exit(0)
+            elif o in ("-l", "--language"):
                 language = a
             elif o in ("-m", "--mother-tongue"):
                 mother_tongue = a
@@ -63,7 +70,7 @@ if __name__ == '__main__':
     ast = ast_renderer.read(filename)
     matches = matcher.match(ast)
     print("Found {} matches:\n".format(len(matches)))
-    
+
     for match in matches:
         print("{}\n".format(match))
 
