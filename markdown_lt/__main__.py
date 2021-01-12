@@ -2,6 +2,7 @@
 """Executable for linting natural language in markdown files."""
 
 import getopt
+import os
 import sys
 
 from markdown_lt import AstMatcher, AstRenderer, Linter
@@ -57,8 +58,8 @@ if __name__ == '__main__':
             elif opt in ("-d", "--disable"):
                 DISABLED_RULES = set(arg.split(','))
             else:
-                raise RuntimeError("Unhandled argument found.")
-        FILEPATH = sys.argv[-1]
+                raise RuntimeError("Invalid option/argument: {} {}".format(opt, arg))
+        FILEPATH = os.path.abspath(sys.argv[-1])
     except getopt.GetoptError as err:
         print(err)
         sys.exit(2)
