@@ -8,8 +8,8 @@ class Linter:
     """Linter for natural languages."""
 
     # pylint: disable=R0913
-    def __init__(self, language: str, mother_tongue: str, wordlist: list[str], enabled_only: bool,
-                 enabled_rules: set[str], disabled_rules: set[str]):
+    def __init__(self, language: str, mother_tongue: str, wordlist: list, enabled_only: bool, enabled_rules: set,
+                 disabled_rules: set):
         self.linter = language_tool_python.LanguageTool(language, mother_tongue, None, wordlist)
         if enabled_only:
             self.linter.enabled_rules_only = True
