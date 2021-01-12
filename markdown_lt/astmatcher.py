@@ -1,8 +1,14 @@
-class Matcher:
+"""Provides a lint matcher for ASTs."""
+
+
+# pylint: disable=R0903
+class AstMatcher:
+    """Lint matcher for ASTs."""
     def __init__(self, language_tool):
         self.language_tool = language_tool
 
     def match(self, ast: list) -> list:
+        """Returns lint matches for an AST."""
         return self._match_list(ast)
 
     def _match(self, string: str) -> list:
@@ -19,9 +25,9 @@ class Matcher:
 
     def _match_dict(self, node: dict) -> list:
         matches = []
-        t = node["type"]
+        node_type = node["type"]
 
-        if t != 'block_code' and t != 'codespan' and t != 'block_html':
+        if node_type not in ('block_code', 'codespan', 'block_html'):
             if 'text' in node:
                 matches += self._match(node['text'])
             if 'alt' in node:
