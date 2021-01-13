@@ -1,6 +1,6 @@
 """Provides a linter for natural languages."""
 
-import language_tool_python
+from language_tool_python import LanguageTool
 
 
 # pylint: disable=R0903
@@ -8,9 +8,12 @@ class Linter:
     """Linter for natural languages."""
 
     # pylint: disable=R0913
-    def __init__(self, language: str, mother_tongue: str, wordlist: list, enabled_only: bool, enabled_rules: set,
-                 disabled_rules: set):
-        self.linter = language_tool_python.LanguageTool(language, mother_tongue, None, wordlist)
+    def __init__(self, language: str, mother_tongue: str, wordlist: set, wordlist_only_current_session: bool,
+                 enabled_only: bool, enabled_rules: set, disabled_rules: set):
+        self.linter = LanguageTool(language, mother_tongue, None, wordlist)
+        if wordlist_only_current_session:
+            print("Current session")
+            self.linter.new_spellings_only_current_session = True
         if enabled_only:
             self.linter.enabled_rules_only = True
         if enabled_rules:
