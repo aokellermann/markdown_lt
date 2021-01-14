@@ -10,7 +10,7 @@ def read_utf8(filepath: str) -> str:
 def readlines_utf8(filepath: str) -> list:
     """Returns a list of utf-8 encoded strings of a file."""
     with open(filepath, 'rb') as file:
-        return [word.decode('utf-8') for word in file.readlines()]
+        return [word.decode('utf-8').strip('\n ') for word in file.readlines()]
 
 
 def matches_to_string(matches: list):
