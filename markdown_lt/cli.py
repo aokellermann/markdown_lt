@@ -15,10 +15,10 @@ def check(md_text: str,
     """Driver function. Takes in options and returns a list of matches."""
 
     ast_renderer = AstRenderer()
-    language_tool = Linter(language, mother_tongue, wordlist, wordlist_only_current_session, enabled_only,
-                           enabled_rules, disabled_rules)
-    matcher = AstMatcher(language_tool)
+    with Linter(language, mother_tongue, wordlist, wordlist_only_current_session, enabled_only, enabled_rules,
+                disabled_rules) as language_tool:
+        matcher = AstMatcher(language_tool)
 
-    ast = ast_renderer.parse(md_text)
-    matches = matcher.match(ast)
-    return matches
+        ast = ast_renderer.parse(md_text)
+        matches = matcher.match(ast)
+        return matches
