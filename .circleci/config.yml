@@ -10,7 +10,10 @@ jobs:
 
       - run:
           name: Install Required Tools
-          command: apk add --no-cache python3 py3-pip py3-virtualenv py3-pytest py3-coverage bash shfmt shellcheck
+          command: apk add --no-cache python3 py3-pip py3-virtualenv bash shfmt shellcheck
+
+      - restore_cache:
+          key: venv-v1-{{ checksum "setup.cfg" }}
 
       - run:
           name: Set Up Virtualenv
@@ -20,6 +23,11 @@ jobs:
             source venv/bin/activate
             pip install --upgrade pip wheel
             pip install -e .[dev]
+
+      - save_cache:
+          key: venv-v1-{{ checksum "setup.cfg" }}
+          paths:
+            - "venv"
 
       - run:
           name: Format

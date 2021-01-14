@@ -3,6 +3,8 @@
 
 from setuptools import setup
 
+import markdown_lt
+
 
 def fread(path):
     """Reads a file."""
@@ -12,7 +14,7 @@ def fread(path):
 
 setup(
     name='markdown_lt',
-    version='0.1.0',
+    version=markdown_lt.__version__,
     url='https://github.com/aokellermann/markdown_lt',
     author='Antony Kellermann',
     author_email='aokellermann@gmail.com',
