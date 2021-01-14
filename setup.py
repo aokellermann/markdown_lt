@@ -16,4 +16,4 @@ setup(name='markdown_lt',
       license='MIT',
       packages=['markdown_lt'],
       platforms='any',
-      scripts='bin/markdown_lt')
+      scripts=['bin/markdown_lt'])

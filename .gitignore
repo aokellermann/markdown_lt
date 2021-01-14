@@ -14,9 +14,11 @@ __pycache__
 
 /venv/
 
-# Eggs
+# Build
 
-/markdown_lt.egg-info
+/build/
+/dist/
+/markdown_lt.egg-info/
 
 # Coverage report
 
