@@ -6,11 +6,7 @@
 
 ## Setup
 
-<<<<<<< HEAD
 Install the tool:
-=======
-Install the environment:
->>>>>>> master
 
 ```bash
 git clone https://github.com/aokellermann/markdown_lt.git
