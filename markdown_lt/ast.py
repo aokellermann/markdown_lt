@@ -3,7 +3,6 @@
 import mistune
 
 
-# pylint: disable=R0903
 class AstRenderer:
     """AST renderer for markdown files."""
     def __init__(self, plugins: list = None):

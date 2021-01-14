@@ -3,11 +3,8 @@
 from language_tool_python import LanguageTool
 
 
-# pylint: disable=R0903
 class Linter:
     """Linter for natural languages."""
-
-    # pylint: disable=R0913
     def __init__(self, language: str, mother_tongue: str, wordlist: set, wordlist_only_current_session: bool,
                  enabled_only: bool, enabled_rules: set, disabled_rules: set):
         self.linter = LanguageTool(language, mother_tongue, None, wordlist)

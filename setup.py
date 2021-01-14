@@ -4,13 +4,7 @@
 from setuptools import setup
 
 import markdown_lt
-
-
-def fread(path):
-    """Reads a file."""
-    with open(path, 'r') as file:
-        return file.read()
-
+from markdown_lt.utils import read_utf8
 
 setup(
     name='markdown_lt',
@@ -19,7 +13,7 @@ setup(
     author='Antony Kellermann',
     author_email='aokellermann@gmail.com',
     description='LanguageTool for markdown files.',
-    long_description=fread('README.md'),
+    long_description=read_utf8('README.md'),
     license='MIT',
     packages=['markdown_lt'],
     platforms='any',

@@ -4,16 +4,7 @@ import getopt
 import sys
 
 from markdown_lt import check, matches_to_string
-
-
-def read_utf8(filepath: str) -> str:
-    with open(filepath, 'rb') as file:
-        return file.read().decode('utf-8')
-
-
-def readlines_utf8(filepath: str) -> list:
-    with open(filepath, 'rb') as file:
-        return [word.decode('utf-8') for word in file.readlines()]
+from markdown_lt.utils import read_utf8, readlines_utf8
 
 
 def print_usage():
@@ -35,13 +26,15 @@ def print_usage():
     print("  2\t\t\t\tuser error")
 
 
-if __name__ == '__main__':
+def main() -> int:
+    """Main function for markdown_lt module. Returns an exit code."""
+
     if len(sys.argv) <= 1:
         print_usage()
-        sys.exit(2)
+        return 2
     if len(sys.argv) == 2 and sys.argv[1] in ('-h', '--help'):
         print_usage()
-        sys.exit(0)
+        return 0
 
     language = None
     mother_tongue = None
@@ -69,10 +62,14 @@ if __name__ == '__main__':
                 raise RuntimeError("Invalid option/argument: {} {}".format(opt, arg))
     except Exception as err:
         print(err)
-        sys.exit(2)
+        return 2
 
     matches = check(read_utf8(sys.argv[-1]), language, mother_tongue, wordlist, enabled_only, enabled_rules,
                     disabled_rules)
     print(matches_to_string(matches))
 
-    sys.exit(len(matches) >= 1)
+    return len(matches) >= 1
+
+
+if __name__ == '__main__':
+    sys.exit(main())

@@ -1,7 +1,8 @@
-#!/usr/bin/env python3
 """CLI driver for linting natural language in markdown files."""
 
-from markdown_lt import AstMatcher, AstRenderer, Linter
+from markdown_lt.astmatcher import AstMatcher
+from markdown_lt.ast import AstRenderer
+from markdown_lt.linter import Linter
 
 
 def check(md_text: str,

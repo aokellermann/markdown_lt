@@ -1,7 +1,6 @@
 """Provides a lint matcher for ASTs."""
 
 
-# pylint: disable=R0903
 class AstMatcher:
     """Lint matcher for ASTs."""
     def __init__(self, language_tool):
