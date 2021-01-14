@@ -16,8 +16,8 @@ def check(md_text: str,
 
     ast_renderer = AstRenderer()
     with Linter(language, mother_tongue, wordlist, wordlist_only_current_session, enabled_only, enabled_rules,
-                disabled_rules) as language_tool:
-        matcher = AstMatcher(language_tool)
+                disabled_rules) as linter:
+        matcher = AstMatcher(linter)
 
         ast = ast_renderer.parse(md_text)
         matches = matcher.match(ast)
