@@ -1,0 +1,51 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: alpine
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install Required Tools
+          command: apk add --no-cache python3 py3-pip py3-virtualenv bash shfmt shellcheck
+
+      - restore_cache:
+          key: venv-v1-{{ checksum "setup.cfg" }}
+
+      - run:
+          name: Set Up Virtualenv
+          command: |
+            python3 -m venv venv
+            echo "source venv/bin/activate" >> $BASH_ENV
+            source venv/bin/activate
+            pip install --upgrade pip wheel
+            pip install -e .[dev]
+
+      - save_cache:
+          key: venv-v1-{{ checksum "setup.cfg" }}
+          paths:
+            - "venv"
+
+      - run:
+          name: Format
+          command: ./scripts/format.sh
+
+      - run:
+          name: Lint
+          command: ./scripts/lint.sh
+
+      - run:
+          name: Test
+          command: ./scripts/test.sh
+
+      - store_test_results:
+          path: test_results
+
+      - store_artifacts:
+          path: test_results
+
+      - store_artifacts:
+          path: htmlcov
