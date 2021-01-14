@@ -44,7 +44,7 @@ def main() -> int:
     disabled_rules = None
     try:
         opts, _ = getopt.getopt(sys.argv[1:-1], "l:m:w:oe:d:",
-                                ["language=", "mother-tongue=", "wordlist=", "enabled-only", "enable", "disable"])
+                                ["language=", "mother-tongue=", "wordlist=", "enabled-only", "enable=", "disable="])
         for opt, arg in opts:
             if opt in ("-l", "--language"):
                 language = arg
@@ -64,7 +64,7 @@ def main() -> int:
         print(err)
         return 2
 
-    matches = check(read_utf8(sys.argv[-1]), language, mother_tongue, wordlist, enabled_only, enabled_rules,
+    matches = check(read_utf8(sys.argv[-1]), language, mother_tongue, wordlist, True, enabled_only, enabled_rules,
                     disabled_rules)
     print(matches_to_string(matches))
 
