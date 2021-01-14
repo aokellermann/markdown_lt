@@ -3,4 +3,4 @@
 set -eo pipefail
 
 pylint --rcfile=setup.cfg markdown_lt setup.py
-shellcheck scripts/hooks/* scripts/*.sh
+shellcheck scripts/hooks/* scripts/*.sh bin/markdown_lt

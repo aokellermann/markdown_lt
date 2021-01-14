@@ -4,10 +4,10 @@ set -eo pipefail
 
 if [ "$#" -eq 0 ]; then
   yapf --diff --recursive markdown_lt setup.py
-  shfmt -l -d -i 2 scripts
+  shfmt -l -d -i 2 scripts bin
 elif [ "$1" == "-i" ]; then
   yapf --in-place --recursive markdown_lt setup.py 2>/dev/null
-  shfmt -w -i 2 scripts
+  shfmt -w -i 2 scripts bin
 else
   echo "Usage: format.sh [-i]"
   exit 1
