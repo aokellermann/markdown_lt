@@ -3,11 +3,20 @@
 
 from setuptools import setup
 
-import markdown_lt
-from markdown_lt.utils import read_utf8
+from markdown_lt.utils import read_utf8, readlines_utf8
+
+
+def get_version() -> str:
+    """Gets the version of this module without importing."""
+    lines = readlines_utf8('__init__.py')
+    for line in lines:
+        if line.startswith('__version__'):
+            return line.split('\'')[1]
+    raise RuntimeError("Couldn't find version!")
+
 
 setup(name='markdown_lt',
-      version=markdown_lt.__version__,
+      version=get_version(),
       url='https://github.com/aokellermann/markdown_lt',
       author='Antony Kellermann',
       author_email='aokellermann@gmail.com',
