@@ -33,3 +33,9 @@ Usage: python -m markdown_lt [OPTION]... FILE
   1                             language errors
   2                             user error
 ```
+
+Currently, only spellcheck has been confirmed to work well. You can run an English spellcheck with:
+
+```bash
+markdown_lt --language en-US --enabled-only --enable MORFOLOGIK_RULE_EN_US file.md
+```

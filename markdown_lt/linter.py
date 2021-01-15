@@ -7,7 +7,7 @@ class Linter:
     """Linter for natural languages."""
     def __init__(self, language: str, mother_tongue: str, wordlist: set, wordlist_only_current_session: bool,
                  enabled_only: bool, enabled_rules: set, disabled_rules: set):
-        self.linter = LanguageTool(language, mother_tongue, None, wordlist)
+        self.linter = LanguageTool(language, mother_tongue, None, list(filter(lambda word: word, wordlist)))
         if wordlist_only_current_session:
             self.linter.new_spellings_only_current_session = True
         if enabled_only:
