@@ -10,7 +10,7 @@ from markdown_lt.utils import read_utf8, readlines_utf8
 def print_usage():
     """Prints executable usage options."""
 
-    print("Usage: python -m markdown_lt [OPTION]... FILE")
+    print("Usage: markdown_lt [OPTION]... FILE")
     print(" FILE\t\t\t\tmarkdown file to check")
     print(" Available options:")
     print("  -h, --help\t\t\tprint usage information")

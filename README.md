@@ -17,11 +17,12 @@ pip install -e .
 ## Usage
 
 ```console
-$ python -m markdown_lt --help
-Usage: python -m markdown_lt [OPTION]... FILE
+$ markdown_lt --help
+Usage: markdown_lt [OPTION]... FILE
  FILE                           markdown file to check
  Available options:
   -h, --help                    print usage information
+  -v, --version                 print version
   -l, --language LANG           the language code of the text
   -m, --mother-tongue LANG      the language code of your mother tongue
   -w, --wordlist DICT           a newline separated file of valid words
@@ -38,4 +39,10 @@ Currently, only spellcheck has been confirmed to work well. You can run an Engli
 
 ```bash
 markdown_lt --language en-US --enabled-only --enable MORFOLOGIK_RULE_EN_US file.md
+```
+
+Using an additional custom dictionary:
+
+```bash
+markdown_lt --language en-US --enabled-only --enable MORFOLOGIK_RULE_EN_US --wordlist dict.txt file.md
 ```
