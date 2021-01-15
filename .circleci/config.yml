@@ -21,7 +21,7 @@ jobs:
             python3 -m venv venv
             echo "source venv/bin/activate" >> $BASH_ENV
             source venv/bin/activate
-            pip install --upgrade pip wheel
+            pip install --upgrade pip wheel twine
             pip install -e .[dev]
 
       - save_cache:
