@@ -18,7 +18,7 @@ def readlines_utf8(filepath: str) -> list:
 
 def get_version() -> str:
     """Gets the version of this module without importing."""
-    lines = readlines_utf8('__init__.py')
+    lines = readlines_utf8('markdown_lt/__init__.py')
     for line in lines:
         if line.startswith('__version__'):
             return line.split('\'')[1]
