@@ -3,7 +3,17 @@
 
 from setuptools import setup
 
-from markdown_lt.utils import read_utf8, readlines_utf8
+
+def read_utf8(filepath: str) -> str:
+    """Returns a utf-8 encoded string of a file."""
+    with open(filepath, 'rb') as file:
+        return file.read().decode('utf-8')
+
+
+def readlines_utf8(filepath: str) -> list:
+    """Returns a list of utf-8 encoded strings of a file."""
+    with open(filepath, 'rb') as file:
+        return [word.decode('utf-8').strip('\n ') for word in file.readlines()]
 
 
 def get_version() -> str:
