@@ -8,4 +8,4 @@ from markdown_lt.linter import Linter
 from markdown_lt.cli import check
 from markdown_lt.utils import matches_to_string
 
-__version__ = '0.2.0'
+__version__ = '0.1.0'
