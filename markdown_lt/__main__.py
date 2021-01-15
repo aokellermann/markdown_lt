@@ -3,7 +3,7 @@
 import getopt
 import sys
 
-from markdown_lt import check, matches_to_string
+from markdown_lt import __version__, check, matches_to_string
 from markdown_lt.utils import read_utf8, readlines_utf8
 
 
@@ -14,6 +14,7 @@ def print_usage():
     print(" FILE\t\t\t\tmarkdown file to check")
     print(" Available options:")
     print("  -h, --help\t\t\tprint usage information")
+    print("  -v, --version\t\t\tprint version")
     print("  -l, --language LANG\t\tthe language code of the text")
     print("  -m, --mother-tongue LANG\tthe language code of your mother tongue")
     print("  -w, --wordlist DICT\t\ta newline separated file of valid words")
@@ -32,8 +33,11 @@ def main() -> int:
     if len(sys.argv) <= 1:
         print_usage()
         return 2
-    if len(sys.argv) == 2 and sys.argv[1] in ('-h', '--help'):
-        print_usage()
+    if len(sys.argv) == 2 and sys.argv[1] in ('-h', '--help', '-v', '--version'):
+        if sys.argv[1] in ('-h', '--help'):
+            print_usage()
+        else:
+            print(__version__)
         return 0
 
     language = None
