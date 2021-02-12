@@ -3,17 +3,19 @@ version: 2
 jobs:
   build:
     docker:
-      - image: alpine:3.12
+      - image: alpine:3.13
 
     steps:
       - checkout
 
       - run:
           name: Install Required Tools
-          command: apk add --no-cache python3 py3-pip py3-virtualenv bash shfmt shellcheck
+          command: |
+            apk add --no-cache python3 py3-pip py3-virtualenv bash shfmt shellcheck \
+              python3-dev gcc rust cargo openssl-dev libffi-dev
 
       - restore_cache:
-          key: venv-v2-{{ checksum "setup.cfg" }}
+          key: venv-v1-{{ checksum "setup.cfg" }}
 
       - run:
           name: Set Up Virtualenv
