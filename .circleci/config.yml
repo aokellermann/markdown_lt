@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: alpine:3.13.1
+      - image: alpine:3.12
 
     steps:
       - checkout
