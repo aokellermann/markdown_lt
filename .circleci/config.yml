@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: alpine
+      - image: alpine:3.13.1
 
     steps:
       - checkout
@@ -13,7 +13,7 @@ jobs:
           command: apk add --no-cache python3 py3-pip py3-virtualenv bash shfmt shellcheck
 
       - restore_cache:
-          key: venv-v1-{{ checksum "setup.cfg" }}
+          key: venv-v2-{{ checksum "setup.cfg" }}
 
       - run:
           name: Set Up Virtualenv
@@ -21,7 +21,7 @@ jobs:
             python3 -m venv venv
             echo "source venv/bin/activate" >> $BASH_ENV
             source venv/bin/activate
-            pip install --upgrade pip wheel
+            pip install --upgrade pip setuptools wheel
             pip install -e .[dev]
 
       - save_cache:
