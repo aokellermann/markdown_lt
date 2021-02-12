@@ -15,11 +15,11 @@ def readlines_utf8(filepath: str) -> list:
 
 def match_to_string(match) -> str:
     """Returns a human readable string of a match."""
-    s = "{} [{}]".format(match.message, match.ruleId)
+    suggestion = "{} [{}]".format(match.message, match.ruleId)
     if match.replacements:
-        s += '\nSuggestion: {}'.format('; '.join(match.replacements))
-    s += '\n{}\n{}'.format(match.context, ' ' * match.offsetInContext + '^' * match.errorLength)
-    return s
+        suggestion += '\nSuggestion: {}'.format('; '.join(match.replacements))
+    suggestion += '\n{}\n{}'.format(match.context, ' ' * match.offsetInContext + '^' * match.errorLength)
+    return suggestion
 
 
 def matches_to_string(matches: list) -> str:
